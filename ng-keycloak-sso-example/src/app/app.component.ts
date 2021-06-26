@@ -8,7 +8,9 @@ import { OAuthService, UserInfo } from 'angular-oauth2-oidc';
 })
 export class AppComponent {
 
-  constructor(private oAuthService: OAuthService) {}
+  constructor(private oAuthService: OAuthService) {
+
+  }
 
   logout () {
     this.oAuthService.logOut();

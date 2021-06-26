@@ -15,7 +15,9 @@ function initializeApp(oAuthService: OAuthService): Promise<any> {
       redirectUri: window.location.origin,
       // clientid in keycloak
       clientId: 'ssotest',
+      // for local testing only
       requireHttps: false,
+      // code flow instead of implicity flow
       responseType: 'code',
     }
 
@@ -28,8 +30,7 @@ function initializeApp(oAuthService: OAuthService): Promise<any> {
     })
 
     oAuthService.events.subscribe((event: OAuthEvent) => {
-      if (event.type == 'token_error') {
-        console.log('TOKEN_ERROR')
+      if (event.type == 'token_error' || event.type == 'token_refresh_error') {
         oAuthService.initLoginFlow()
       }
     })
