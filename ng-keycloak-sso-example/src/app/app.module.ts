@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AuthConfig, OAuthEvent, OAuthModule, OAuthService } from 'angular-oauth2-oidc';
+import { AuthConfig, OAuthEvent, OAuthModule, OAuthService, UserInfo } from 'angular-oauth2-oidc';
 import { AppComponent } from './app.component';
 
 
@@ -24,6 +24,10 @@ function initializeApp(oAuthService: OAuthService): Promise<any> {
     oAuthService.configure(authConfig)
     oAuthService.setupAutomaticSilentRefresh()
     oAuthService.loadDiscoveryDocumentAndLogin().then((x) => {
+      oAuthService.loadUserProfile ().then ( (userProfile: UserInfo) => {
+        console.log(userProfile.name)
+      })
+
       resolve(null)
     }).catch(() => {
       reject()
