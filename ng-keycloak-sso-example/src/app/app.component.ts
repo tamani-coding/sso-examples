@@ -22,7 +22,7 @@ export class AppComponent {
       Authorization: `Bearer ${this.oAuthService.getAccessToken()}`,
     })
 
-    this.http.get('http://localhost:8080/hello/SSOTESTER4', { headers: header }).subscribe(
+    this.http.get('http://localhost:8080/hello/SSOTESTER2', { headers: header }).subscribe(
       (response) => {
         console.log(response)
       }
